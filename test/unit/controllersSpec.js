@@ -2,16 +2,18 @@
 
 /* jasmine specs for controllers go here */
 
-describe('MyCtrl1', function(){
-  var myCtrl1;
+describe('ListCtrl', function(){
+  var listCtrl, scope;
 
   beforeEach(function(){
-    myCtrl1 = new MyCtrl1();
-  });
+    scope = {}
+    listCtrl = new ListCtrl(scope);
+  })
 
-
-  it('should ....', function() {
-    //spec body
+  it('should add new tasks', function() {
+    scope.nextTask = "Foo"
+    listCtrl.addTask();
+    expect(scope.nextTask).toBe("");
   });
 });
 

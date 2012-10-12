@@ -3,8 +3,13 @@
 /* Filters */
 
 angular.module('myApp.filters', []).
-  filter('interpolate', ['version', function(version) {
-    return function(text) {
-      return String(text).replace(/\%VERSION\%/mg, version);
+  filter('disabledIfMinTask', [function() {
+    return function(task, tasks) {
+      return task.order === _.min(_.map(tasks, function(task) { return task.order; })) ? "disabled" : "";
     }
-  }]);
+  }]).
+  filter('disabledIfMaxTask', [function() {
+    return function(task, tasks) {
+        return task.order === _.max(_.map(tasks, function(task) { return task.order; })) ? "disabled" : "";
+    }
+}]);
