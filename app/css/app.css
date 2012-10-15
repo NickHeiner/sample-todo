@@ -37,3 +37,11 @@
 .due-date-soon {
     color: #ff7f50;
 }
+
+.taskDetail h2:hover, .taskDetail p:hover {
+    background: #ff6347;
+}
+
+.hidden {
+    display: none;
+}

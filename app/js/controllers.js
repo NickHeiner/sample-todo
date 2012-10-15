@@ -45,5 +45,15 @@ function TaskDetailCtrl($scope, $routeParams, TaskData) {
             return task.id == $routeParams.taskId;
         });
     })
+
+    $scope.editingTitle = false;
+    $scope.editingDescription = false;
+
+    $scope.toggleEditingTitle = function() {
+        $scope.editingTitle = !$scope.editingTitle;
+    }
+    $scope.toggleEditingDescription = function() {
+        $scope.editingDescription = !$scope.editingDescription;
+    }
 }
 TaskDetailCtrl.$inject = ['$scope', '$routeParams', 'TaskData'];

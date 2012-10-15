@@ -1,3 +1,7 @@
-<h2 class="taskTitle">{{task.title}}</h2>
-<p class="taskDate">{{task.dueDate | date:"MM/dd/yyyy"}}</p>
-<p class="taskDescription">{{task.description}}</p>
+<div class="taskDetail">
+    <h2 class="taskTitle {{editingTitle | boolToHidden}}" ng-click="toggleEditingTitle()">{{task.title}}</h2>
+    <input type="text" value="{{task.title}}" class="taskTitleEdit {{editingTitle | not | boolToHidden}}" />
+    <p class="taskDate">{{task.dueDate | date:"MM/dd/yyyy"}}</p>
+    <p class="taskDescription {{editingDescription | boolToHidden}}" ng-click="toggleEditingDescription()">{{task.description}}</p>
+    <input type="text" value="{{task.description}}" class="{{editingDescription | not | boolToHidden}}" />
+</div>

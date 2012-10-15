@@ -24,4 +24,14 @@ angular.module('sampleTodo.filters', []).
             return "due-date-soon";
         }
     }
+  }]).
+  filter('boolToHidden', [function() {
+    return function(flag) {
+        return flag ? "hidden" : "";
+    }
+  }]).
+  filter('not', [function() {
+    return function(flag) {
+        return !flag;
+    }
   }]);

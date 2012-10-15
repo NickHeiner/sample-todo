@@ -69,18 +69,27 @@ describe('sample todo', function() {
         expect(browser().location().url()).toBe('/taskDetail/1');
     });
 
+    it('should assign classes to due dates', function() {
+        expect(element('.taskDate:first').attr('class')).toBe("taskDate due-date-passed");
+        expect(element('.taskDate:last').attr('class')).toBe("taskDate due-date-soon");
+    });
+
   });
 
   describe('taskDetail', function() {
-    it('should include the right task info', function() {
+    beforeEach(function () {
         browser().navigateTo("#/taskDetail/0");
+    });
+
+    it('should include the right task info', function() {
         expect(element('.taskTitle').text()).toEqual(testData[0].title);
         expect(element('.taskDescription').text()).toEqual(testData[0].description);
     });
 
-    it('should assign classes to due dates', function() {
-        expect(element('.taskDate:first').attr('class')).toBe("taskDate due-date-passed");
-        expect(element('.taskDate:last').attr('class')).toBe("taskDate due-date-soon");
-    })
+    it('should make title editable', function() {
+       expect(element('.taskTitleEdit').attr('class')).toBe('taskTitleEdit hidden');
+       element('.taskTitle').click();
+       expect(element('.taskTitleEdit').attr('class')).toMatch(/taskTitleEdit ?/);
+    });
   });
 });
