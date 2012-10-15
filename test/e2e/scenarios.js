@@ -2,6 +2,7 @@
 
 /* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
 
+// TODO some of these may be better as unit tests but I haven't been able to get them set up
 describe('sample todo', function() {
 
   var testData;
@@ -11,10 +12,11 @@ describe('sample todo', function() {
 
     // TODO what is the best way to get test data?
     testData = [
-        {"id": 0, "title": "Walk dog", "order": 3, "dueDate": "14 October 2012", "description": "marmalade"},
-        {"id": 1, "title": "Buy groceries", "order": 1, "dueDate": "13 October 2012", "description": "gotta do the cookin by the book"},
-        {"id": 2, "title": "Do other stuff", "order": 2, "dueDate": "22 November 2012", "description": "widsom"}
+        {"id": 0, "title": "Walk dog", "order": 3, "dueDate": "2012-10-16T13:11:01.420Z", "description": "marmalade"},
+        {"id": 1, "title": "Buy groceries", "order": 1, "dueDate": "2012-10-13T13:11:01.420Z", "description": "gotta do the cookin by the book"},
+        {"id": 2, "title": "Do other stuff", "order": 2, "dueDate": "2012-11-22T13:11:01.420Z", "description": "widsom"}
     ]
+
   });
 
 
@@ -74,6 +76,11 @@ describe('sample todo', function() {
         browser().navigateTo("#/taskDetail/0");
         expect(element('.taskTitle').text()).toEqual(testData[0].title);
         expect(element('.taskDescription').text()).toEqual(testData[0].description);
+    });
+
+    it('should assign classes to due dates', function() {
+        expect(element('.taskDate:first').attr('class')).toBe("taskDate due-date-passed");
+        expect(element('.taskDate:last').attr('class')).toBe("taskDate due-date-soon");
     })
   });
 });

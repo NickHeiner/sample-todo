@@ -2,7 +2,7 @@
 <ol id="taskList">
     <li class="taskItem" ng-repeat="task in tasks | orderBy:'order'">
         <h3 class="taskTitle"><a href="#/taskDetail/{{task.id}}">{{task.title}}</a></h3>
-        <p class="taskDate">{{task.dueDate | date:"MM/dd/yyyy"}}</p>
+        <p class="taskDate {{task.dueDate | dateStyling}}">{{task.dueDate | date:"MM/dd/yyyy"}}</p>
         <button disabled="{{task | disabledIfMinTask:tasks}}" ng-click="moveTaskUp(task)">Up</button>
         <button disabled="{{task | disabledIfMaxTask:tasks}}" ng-click="moveTaskDown(task)">Down</button>
     </li>
