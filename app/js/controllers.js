@@ -1,7 +1,7 @@
 'use strict';
 /* Controllers */
-function ListCtrl($scope) {
-    $scope.tasks = utils.data;
+function ListCtrl($scope, TaskData) {
+    $scope.tasks = TaskData.query();
     $scope.addTask = function() {
         $scope.tasks.push({title: $scope.nextTask,
                            order: _.chain($scope.tasks)
@@ -37,12 +37,13 @@ function ListCtrl($scope) {
         }
     }
 }
-ListCtrl.$inject = ['$scope'];
+ListCtrl.$inject = ['$scope', 'TaskData'];
 
-function TaskDetailCtrl($scope, $routeParams) {
-    $scope.task = _.find(utils.data, function (task) {
-        return task.id == $routeParams.taskId;
-    });
-    //$scope.task = data[0];
+function TaskDetailCtrl($scope, $routeParams, TaskData) {
+    TaskData.query(function(tasks) {
+        $scope.task = _.find(tasks, function (task) {
+            return task.id == $routeParams.taskId;
+        });
+    })
 }
-TaskDetailCtrl.$inject = ['$scope', '$routeParams'];
+TaskDetailCtrl.$inject = ['$scope', '$routeParams', 'TaskData'];

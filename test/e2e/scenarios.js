@@ -4,8 +4,17 @@
 
 describe('sample todo', function() {
 
+  var testData;
+
   beforeEach(function() {
     browser().navigateTo('../../app/index.html');
+
+    // TODO what is the best way to get test data?
+    testData = [
+        {"id": 0, "title": "Walk dog", "order": 3, "dueDate": "14 October 2012", "description": "marmalade"},
+        {"id": 1, "title": "Buy groceries", "order": 1, "dueDate": "13 October 2012", "description": "gotta do the cookin by the book"},
+        {"id": 2, "title": "Do other stuff", "order": 2, "dueDate": "22 November 2012", "description": "widsom"}
+    ]
   });
 
 
@@ -63,8 +72,8 @@ describe('sample todo', function() {
   describe('taskDetail', function() {
     it('should include the right task info', function() {
         browser().navigateTo("#/taskDetail/0");
-        expect(element('.taskTitle').text()).toEqual(utils.data[0].title);
-        expect(element('.taskDescription').text()).toEqual(utils.data[0].description);
+        expect(element('.taskTitle').text()).toEqual(testData[0].title);
+        expect(element('.taskDescription').text()).toEqual(testData[0].description);
     })
   });
 });

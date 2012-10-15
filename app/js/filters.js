@@ -2,7 +2,7 @@
 
 /* Filters */
 
-angular.module('myApp.filters', []).
+angular.module('sampleTodo.filters', []).
   filter('disabledIfMinTask', [function() {
     return function(task, tasks) {
       return task.order === _.min(_.map(tasks, utils.getOrder)) ? "disabled" : "";
