@@ -53,5 +53,18 @@ describe('sample todo', function() {
         expect(element(".taskItem:last h3", "last task title").text()).not().toMatch("walk dog");
     });
 
+    it('should navigate to the correct task via the title', function() {
+        element(".taskItem:first a").click();
+        expect(browser().location().url()).toBe('/taskDetail/1');
+    });
+
+  });
+
+  describe('taskDetail', function() {
+    it('should include the right task info', function() {
+        browser().navigateTo("#/taskDetail/0");
+        expect(element('.taskTitle').text()).toEqual(utils.data[0].title);
+        expect(element('.taskDescription').text()).toEqual(utils.data[0].description);
+    })
   });
 });

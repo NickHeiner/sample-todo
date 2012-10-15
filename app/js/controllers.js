@@ -1,16 +1,11 @@
 'use strict';
-
-function getOrder(task) { return task.order; }
-
 /* Controllers */
 function ListCtrl($scope) {
-    $scope.tasks = [{title: "Walk dog", order: 3, dueDate: new Date("14 October 2012")},
-                    {title: "Buy groceries", order: 1, dueDate: new Date("13 October 2012")},
-                    {title: "Do other stuff", order: 2, dueDate: new Date("22 November 2012")}];
+    $scope.tasks = utils.data;
     $scope.addTask = function() {
         $scope.tasks.push({title: $scope.nextTask,
                            order: _.chain($scope.tasks)
-                                   .map(getOrder)
+                                   .map(utils.getOrder)
                                    .max()
                                    .value(),
                            dueDate: new Date("1 November 2012")
@@ -44,6 +39,10 @@ function ListCtrl($scope) {
 }
 ListCtrl.$inject = ['$scope'];
 
-function MyCtrl2() {
+function TaskDetailCtrl($scope, $routeParams) {
+    $scope.task = _.find(utils.data, function (task) {
+        return task.id == $routeParams.taskId;
+    });
+    //$scope.task = data[0];
 }
-MyCtrl2.$inject = [];
+TaskDetailCtrl.$inject = ['$scope', '$routeParams'];
